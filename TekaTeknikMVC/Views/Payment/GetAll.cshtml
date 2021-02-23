@@ -1,0 +1,87 @@
+﻿@model List<Payments>
+
+
+
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>ÖDEMELER</h2>
+<form method="post">
+    <div class="row">
+        <div class="form-group">
+            <label>Yıllar</label>
+            <select id="selectYears" name="year">
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+            </select>
+
+            <label>Aylar</label>
+            <select id="selectMonths" name="month">
+                <option value="1">Ocak</option>
+                <option value="2">Şubat</option>
+                <option value="3">Mart</option>
+                <option value="4">Nisan</option>
+                <option value="5">Mayıs</option>
+                <option value="6">Haziran</option>
+                <option value="7">Temmuz</option>
+                <option value="8">Ağustos</option>
+                <option value="9">Eylül</option>
+                <option value="10">Ekim</option>
+                <option value=11>Kasım</option>
+                <option value="12">Aralık</option>
+            </select>
+            @*<label for="date">Start date:</label>
+
+                <input type="date" id="date" name="date"
+                       value="2021-02-22"
+                       min="2018-01-01" max="2023-12-31">
+                <br />*@
+        </div>
+        <br />
+        @ViewBag.date
+        <br />
+        <button type="submit" class="btn btn-primary">Getir</button>
+        <hr />
+
+        <hr/>
+    </div>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Çalışan id</th>
+            <th>Personel Kodu</th>
+            <th>Çalışan Adı</th>
+            <th>Çalışan Soyadı</th>
+            <th>Maaş</th>
+            <th>Ödeme Tipi</th>
+            <th>Ödeme Tarihi</th>
+            <th>Ödeme Yılı</th>
+            <th>Ödeme Ay</th>
+            <th>Personel Ödeme Detay</th>
+        </tr>
+        @foreach (var pay in Model)
+        {
+            <tr>
+                <td>@pay.EmployeeId</td>
+                <td>@pay.Employees.EmployeeCode</td>
+                <td>@pay.Employees.FirstName</td>
+                <td>@pay.Employees.Lastname</td>
+                <td>@pay.Amount</td>
+                <td>@pay.PaymentType</td>
+                <td>@pay.Date</td>
+                <td>@pay.Year</td>
+                <td>@pay.Month</td>
+                <td><a href="/Payment/Index/@pay.EmployeeId" class="btn btn-default" style="border-block-color: darkcyan">Detaylar</a></td>
+               
+            </tr>
+        }
+
+    </table>
+</form>
+
+
+

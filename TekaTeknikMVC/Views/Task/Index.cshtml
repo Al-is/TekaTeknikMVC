@@ -1,0 +1,35 @@
+﻿@model List<Tasks>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Görevler</h2>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Görev id</th>
+        <th>Görev Adı</th>
+        <th>Personel sayısı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.TaskId</td>
+            <td>@task.TaskName</td>
+            <td class="badge bg-primary text-wrap" style="text-align-all: center ">@task.Employees.Count()</td>
+
+            <td><a href="/Task/TaskDelete/@task.TaskId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Task/TaskGet/@task.TaskId" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Task/TaskDetail/@task.TaskId" class="btn btn-default">Detaylar</a></td>
+            <td></td>
+
+        </tr>
+    }
+</table>
+<a href="/Task/NewTaskAdd/" class="btn btn-primary">Yeni Görev Ekle</a>

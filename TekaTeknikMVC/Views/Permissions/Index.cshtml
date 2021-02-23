@@ -1,0 +1,45 @@
+﻿@model List<Permissions>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<form class="form-group" method="post">
+    <h1>İzin Detay</h1>
+    <br />
+    <b> @ViewBag.perName</b>
+    <br />
+    <a href="/Permissions/PermissionAdd/@Model[0].EmployeeId" class="btn btn-info">İzin Ekle</a>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>Başlangıç Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>İzin Aldığı gün Sayısı</th>
+            <th>İzin Tipi</th>
+            <th> Sil</th>
+            <th> Güncelle</th>
+
+
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td> @x.StartDay </td>
+                <td>@x.EndDay</td>
+                <td>@x.Day</td>
+                <td>@x.PermissionType</td>
+                <td><a href="/Permissions/PermissionDelete/@x.PermissionId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Permissions/PermissionGet/@x.PermissionId" class="btn btn-success">Güncelle</a></td>
+            </tr>
+
+        }
+
+
+
+    </table>
+</form>

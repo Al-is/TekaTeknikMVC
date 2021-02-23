@@ -1,0 +1,101 @@
+﻿
+@model List<Departments>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Departman</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Departman id</th>
+        <th>Departman Adı</th>
+        <th>Çalışan sayısı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var dep in Model)
+    {
+        <tr>
+            <td>@dep.DepartmentId</td>
+            <td>@dep.DepartmentName</td>
+            <td class="badge bg-primary ">@dep.Employees.Count()</td>
+
+
+            <td><a href="/Department/DepartmentDelete/@dep.DepartmentId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Department/DepartmentGet/@dep.DepartmentId" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Department/DepartmentDetail/@dep.DepartmentId" class="btn btn-default" style="border-block-color: darkcyan">Detaylar</a></td>
+
+        </tr>
+    }
+</table>
+<a href="/Department/NewDepartmentAdd/" class="btn btn-primary">Yeni Departman Ekle</a>
+
+@*@Html.AjaxGrid(Url.Action("Index"))*@
+
+@*<div class="btn btn-danger">
+        <span id="ContentRefresh" class="btn btn-danger"></span>
+    </div>*@
+
+
+@*@(Html
+                .Grid(Model)
+                .Build(columns =>
+                {
+
+                    columns.Add(model => model.DepartmentId).Titled("Departman id");
+                    columns.Add(model => model.DepartmentName).Titled("Departman Adı");
+
+
+                    columns.Add(model => model.Employees.Count()).Titled("Toplam Personel").Encoded(false).RenderedAs(model => "<span class='badge bg-primary '>" + model.Employees.Count() + "</span>");
+
+                    columns.Add(model => " <a  class= 'btn btn-success'" + " href=/Department/DepartmentDetail/" +model.DepartmentId + ">Güncelle</a>").Encoded(false);
+
+                    columns.Add(model => " <a style='border-block-color: darkcyan' class= 'btn btn-default'" + " href=/Department/DepartmentDetail/" +model.DepartmentId + ">Güncelle</a>").Encoded(false);
+                    //columns.Add(model => model.Age).Titled("Age");
+                    //columns.Add(model => model.Birthday).Titled("Birthday").Formatted("{0:d}");
+                    //columns.Add(model => model.IsWorking).Titled("Employed");
+
+
+                })
+                .UsingFilterMode(GridFilterMode.Row)
+                .Empty("No data found")
+                .Filterable()
+                .Sortable()
+                .Pageable()
+                .Css("css-classes") // Overwrites all classes with the new ones
+                .AppendCss("table-hover")
+                )
+
+
+
+    <head>
+        <link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <script src="~/Scripts/MvcGrid/mvc-grid.js"></script>
+        <style>
+
+            .table-hover tbody tr:hover {
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+        </style>
+        <script>
+            document.getElementById('ContentRefresh').addEventListener('click', function () {
+                new MvcGrid(document.querySelector('.mvc-grid')).reload();
+            });
+
+                            //document.addEventListener('rowclick', function (e) {
+
+                            //    $.ajax({
+                            //        type: "GET",
+                            //        url: "/Department/Index",
+                            //    })
+                            //});
+        </script>
+    </body>*@

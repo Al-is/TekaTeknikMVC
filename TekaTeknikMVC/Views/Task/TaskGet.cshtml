@@ -1,0 +1,21 @@
+﻿@model TekaTeknikMVC.Tasks
+
+@{
+    ViewBag.Title = "TaskGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TaskGet</h2>
+
+
+@using (Html.BeginForm("TaskUpdate", "Task", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.TaskId, new { @class = "form-control" })
+    <br />
+
+    <b>Görev Adı</b>
+    @Html.TextBoxFor(x => x.TaskName, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-success">Görev Güncelle</button>
+}

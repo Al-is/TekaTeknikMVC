@@ -1,0 +1,38 @@
+﻿
+@model List<TekaTeknikMVC.Employees>
+
+
+@{
+    ViewBag.Title = "TaskDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Görev Detay</h1>
+<br />
+<b> @ViewBag.taskName</b>
+<br />
+<h1>Toplam çalışan sayısı</h1>
+<b>@ViewBag.totalTask</b>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Personel Kodu</th>
+        <th>Personel adı</th>
+        <th>Soyadı</th>
+        <th>Departman</th>
+
+
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td> @x.EmployeeCode </td>
+            <td>@x.FirstName</td>
+            <td>@x.Lastname</td>
+            <td>@x.Departments.DepartmentName</td>
+
+        </tr>
+    }
+</table>

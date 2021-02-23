@@ -1,0 +1,38 @@
+﻿@model TekaTeknikMVC.Payments
+
+
+@{
+    ViewBag.Title = "PaymentGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Ödeme güncelleme</h2>
+
+
+@using (Html.BeginForm("PaymentUpdate", "Payment", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.PaymentId, new { @class = "form-control" })
+    <br />
+    @Html.HiddenFor(x => x.EmployeeId, new { @class = "form-control" })
+
+    <b>Ödeme Tarihi</b>
+    <br />
+    @Html.TextBoxFor(x => x.Date, new { @class = "form-control", type = "date" })
+    <br />
+    
+    <b>Ödeme Tipi</b>
+    @Html.TextBoxFor(x => x.PaymentType, new { @class = "form-control" })
+    <br />
+    <b>Ödeme Tutarı</b>
+    @Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+    <br />
+    <b>Ödeme Yılı</b>
+    @Html.TextBoxFor(x => x.Year, new { @class = "form-control" })
+    <br />
+    <b>Ödeme Ayı</b>
+    @Html.TextBoxFor(x => x.Month, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Ödeme Güncelle</button>
+    <br />
+}

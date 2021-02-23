@@ -1,0 +1,17 @@
+﻿@model TekaTeknikMVC.Tasks
+
+@{
+    ViewBag.Title = "NewTaskAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni Görev Ekle</h2>
+
+<form class="form-group" method="post">
+
+    <br />
+    <b>Görev Adı</b>
+    @Html.TextBoxFor(x => x.TaskName, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Görev Ekle</button>
+</form>

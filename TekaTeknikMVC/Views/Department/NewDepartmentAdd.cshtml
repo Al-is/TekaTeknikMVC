@@ -1,0 +1,17 @@
+﻿@model TekaTeknikMVC.Departments
+
+@{
+    ViewBag.Title = "NewDepartmentAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NewDepartmentAdd</h2>
+
+<form class="form-group" method="post">
+
+    <br />
+    <b>Departman Adı</b>
+    @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Departman Ekle</button>
+</form>

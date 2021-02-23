@@ -1,0 +1,34 @@
+﻿@model TekaTeknikMVC.Permissions
+
+
+@{
+    ViewBag.Title = "PermissionGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>İzin güncelleme</h2>
+
+
+@using (Html.BeginForm("PermissionUpdate", "Permissions", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.PermissionId, new { @class = "form-control" })
+    <br />
+    @Html.HiddenFor(x => x.EmployeeId, new { @class = "form-control" })
+
+    <b>Başlangıç Tarihi</b>
+    <br />
+    @Html.TextBoxFor(x => x.StartDay, new { @class = "form-control", type = "date" })
+    <b>Bitiş Tarihi</b>
+    <br />
+    @Html.TextBoxFor(x => x.EndDay, new { @class = "form-control", type = "date" })
+    <br />
+    <b>Gün sayısı</b>
+    @Html.TextBoxFor(x => x.Day, new { @class = "form-control" })
+    <br />
+    <b>İzin Tipi</b>
+    @Html.TextBoxFor(x => x.PermissionType, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">İzin Güncelle</button>
+}

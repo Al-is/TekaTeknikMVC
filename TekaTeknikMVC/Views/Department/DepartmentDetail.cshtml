@@ -1,0 +1,37 @@
+﻿
+@model List<Employees>
+
+
+@{
+    ViewBag.Title = "DepartmentDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+
+<h1>Departman Detay</h1>
+<br />
+<b> @ViewBag.departmentName</b>
+<br />
+<h1>Toplam personel sayısı</h1>
+<b>@ViewBag.totalEmp</b>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Personel Kodu</th>
+        <th>Personel adı</th>
+        <th>Soyadı</th>
+
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td> @x.EmployeeCode </td>
+            <td>@x.FirstName</td>
+            <td>@x.Lastname</td>
+
+        </tr>
+    }
+</table>

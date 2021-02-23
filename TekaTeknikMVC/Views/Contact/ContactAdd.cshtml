@@ -1,0 +1,33 @@
+﻿
+@model TekaTeknikMVC.Contacts
+
+@{
+    ViewBag.Title = "ContactAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<form class="form-group" method="post">
+
+
+
+    @Html.HiddenFor(x => x.EmployeeId, new { @class = "form-control" })
+
+    <b>İrtibat Adı</b>
+    <br />
+    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+    <b>İrtibat Soyadı</b>
+    <br />
+    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+    <br />
+    <b>İrtibat Telefon</b>
+    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+    <br />
+    <b>İrtibat Yakınlık</b>
+    @Html.TextBoxFor(x => x.Relation, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-success">İrtibat Ekle</button>
+</form>

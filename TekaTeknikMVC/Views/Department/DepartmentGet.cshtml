@@ -1,0 +1,21 @@
+﻿@model TekaTeknikMVC.Departments
+
+
+@{
+    ViewBag.Title = "DepartmentGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DepartmentGet</h2>
+
+@using (Html.BeginForm("DepartmentUpdate", "Department", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.DepartmentId, new { @class = "form-control" })
+    <br />
+    <b>Departman Adı</b>
+    @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
+    <br />
+   
+    <button class="btn btn-success">Departman Güncelle</button>
+}
+

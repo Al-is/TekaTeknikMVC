@@ -1,0 +1,77 @@
+﻿@model TekaTeknikMVC.Employees
+
+@{
+    ViewBag.Title = "EmployeeGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personel Güncelle</h2>
+
+@using (Html.BeginForm("EmployeeUpdate", "Employees", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.EmployeeId, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.Departments.DepartmentId, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.Tasks.TaskId, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.Districts.DistrictId, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.Districts.CityId, new { @class = "form-control" })
+
+
+    <br />
+    <b>Personel Adı</b>
+    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+    <br />
+    <b>Personel Soyadı</b>
+    @Html.TextBoxFor(x => x.Lastname, new { @class = "form-control" })
+    <br />
+    <b>Departman</b>
+    @Html.DropDownListFor(x => x.DepartmentId, (List<SelectListItem>)ViewBag.deger, new { @class = "form-control" })
+    <br />
+    <b>Görev</b>
+    @Html.DropDownListFor(x => x.TaskId, (List<SelectListItem>)ViewBag.tasks, new { @class = "form-control", })
+    <br />
+    <b>İlçe</b>
+    @Html.DropDownListFor(x => x.DistrictId, (List<SelectListItem>)ViewBag.district, new { @class = "form-control", })
+    <br />
+    @*<b>Şehir</b>
+            @Html.DropDownListFor(x => x.Districts.CityId, (List<SelectListItem>)ViewBag.city, new { @class = "form-control", })
+        <br />*@
+    <b>Doğum Tarihi</b>
+    @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", type = "date" })
+    <br />
+    <b>İşe Giriş Tarihi</b>
+    @Html.TextBoxFor(x => x.StartDay, new { @class = "form-control", type = "date" })
+    <br />
+    <b>İşten Çıkış Tarihi</b>
+    @Html.TextBoxFor(x => x.EndDay, new { @class = "form-control", type = "date" })
+    <br />
+    <b>Doğumyeri</b>
+    @Html.TextBoxFor(x => x.PlaceOfBirth, new { @class = "form-control" })
+    <br />
+    <b>Cep Telefonu</b>
+    @Html.TextBoxFor(x => x.MobilePhone, new { @class = "form-control" })
+    <br />
+    <b>Mail</b>
+    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+    <br />
+    <b>Adres</b>
+    @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+    <br />
+    <b>Uyruk</b>
+    @Html.TextBoxFor(x => x.Nationality, new { @class = "form-control" })
+    <br />
+    <b>Maaş</b>
+    @Html.TextBoxFor(x => x.Salary, new { @class = "form-control" })
+    <br />
+    <b>Personel Kodu</b>
+    @Html.TextBoxFor(x => x.EmployeeCode, new { @class = "form-control" })
+    <br />
+    <b>Cinsiyet</b>
+    @Html.TextBoxFor(x => x.Gender, new { @class = "form-control" })
+    <br />
+    <b>TC Kimlik No</b>
+    @Html.TextBoxFor(x => x.IdentyNumber, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Personel Güncelle</button>
+    <br />
+    <br />
+}

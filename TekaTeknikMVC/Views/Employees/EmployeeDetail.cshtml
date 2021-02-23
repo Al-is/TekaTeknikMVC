@@ -1,0 +1,90 @@
+﻿@model List<TekaTeknikMVC.Employees>
+
+
+@{
+    ViewBag.Title = "EmployeeDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personel Detayları</h2>
+
+<br />
+<br />
+<div class="row">
+    <div class="col col-md-5">
+        <h4>İZİNLER</h4>
+        Bu hafta kullanılan izin gün sayısı<span class="pull-right strong"></span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width:15%">@ViewBag.permissionByWeek</div>
+        </div>
+       
+        Bu ay kullanılan izin gün sayısı<span class="pull-right strong"></span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:30%">@ViewBag.empPermissionByMonth</div>
+        </div>
+
+        Bu yıl kullanılan izin gün sayısı<span class="pull-right strong"></span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width:8%">@ViewBag.empPermissionByYear</div>
+        </div>
+    </div>
+    <div class="col col-md-5">
+        <h4>Ödemeler</h4>
+        Bu hafta yapılan ödeme<span class="pull-right strong"></span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">@ViewBag.empPaymentByWeek</div>
+        </div>
+
+        Bu ay yapılan ödeme<span class="pull-right strong"></span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7000" style="width:100%">@ViewBag.empPaymentByMonth</div>
+        </div>
+
+        Bu yıl yapılan ödeme<span class="pull-right strong"></span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">@ViewBag.empPaymentByYear</div>
+        </div>
+    </div>
+</div>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Personel Kodu</th>
+        <th>Personel Kimlik No</th>
+        <th>Personel adı</th>
+        <th>Soyadı</th>
+        <th>Maaş</th>
+        <th> Doğum Tarihi</th>
+        <th> İşe Giriş Tarihi</th>
+        <th> İşten Çıkış Tarihi</th>
+        <th> Doğum Yeri</th>
+        <th> Adres</th>
+        @*<th> Agi</th>*@
+        <th>Cinsiyet</th>
+        <th>Uyruk</th>
+        <th>İlçe</th>
+
+
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td> @x.EmployeeCode </td>
+            <td> @x.IdentyNumber </td>
+            <td>@x.FirstName</td>
+            <td>@x.Lastname</td>
+            <td>@x.Salary</td>
+            <td>@x.DateOfBirth</td>
+            <td>@x.StartDay</td>
+            <td>@x.EndDay</td>
+            <td>@x.PlaceOfBirth</td>
+            <td>@x.Address</td>
+            @*<td>@x.Agis.AgiName</td>*@
+            <td>@x.Gender</td>
+            <td>@x.Nationality</td>
+            @*<td>@x.Districts.Cities.CityId</td>*@
+            <td>@x.Districts.DistrictName</td>
+
+        </tr>
+    }
+</table>

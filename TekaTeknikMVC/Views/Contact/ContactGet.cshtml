@@ -1,0 +1,30 @@
+﻿@model TekaTeknikMVC.Contacts
+
+
+@{
+    ViewBag.Title = "ContactGet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>İrtibat güncelleme</h2>
+
+
+@using (Html.BeginForm("ContactUpdate", "Contact", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.ContactId, new { @class = "form-control" })
+    <br />
+    <b>İrtibat Adı</b>
+    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+    <br />
+    <b>İrtibat Soyadı</b>
+    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+    <br />
+    <b>İrtibat Telefon</b>
+    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+    <br />
+    <b>İrtibat Yakınlık</b>
+    @Html.TextBoxFor(x => x.Relation, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">İrtibat Güncelle</button>
+}
+

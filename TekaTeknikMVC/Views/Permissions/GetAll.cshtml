@@ -1,0 +1,145 @@
+﻿@model List<Permissions>
+
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>İZİNLER</h2>
+
+<form method="post">
+    <label for="startday">Start date:</label>
+
+    <input type="date" id="startday" name="startday"
+           value="2021-02-22"
+           min="2018-01-01" max="2023-12-31">
+    <br />
+    <br />
+    <label for="endday">End date:</label>
+    <input type="date" id="endday" name="endday"
+           value="2021-02-22"
+           min="2018-01-01" max="2023-12-31">
+
+
+    <button type="submit" class="btn btn-primary">Getir</button>
+    <br />
+    <br />
+    @*<div class="col col-md-5">
+            <h4>Toplam İzinler</h4>
+            Seçilen Tarihler arasında ki toplam izinler<span class="pull-right strong"></span>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">@ViewBag.permissionByDate</div>
+            </div>
+
+            Seçilen ay alınan izinler<span class="pull-right strong"></span>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7000" style="width:100%">@ViewBag.permissionByMonth</div>
+            </div>
+
+            Seçilen yıl alınan izinler<span class="pull-right strong"></span>
+            <div class="progress">
+                <div class="progress-bar progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%">@ViewBag.permissionByYear</div>
+            </div>
+        </div>*@
+    @*<table class="table table-bordered">
+            <tr>
+                <th>Çalışan id</th>
+                <th>Personel Kodu</th>
+                <th>Çalışan Adı</th>
+                <th>Çalışan Soyadı</th>
+                <th>İzin Başlangıç Tarihi</th>
+                <th>İzin Toplam Gün</th>
+                <th>İzin Bitiş Tarihi</th>
+                <th>İzin tipi</th>
+                <th>Personel İzin Detay</th>
+            </tr>
+
+            @foreach (var emp in Model)
+            {
+                <tr>
+                    <td>@emp.EmployeeId</td>
+                    <td>@emp.Employees.EmployeeCode</td>
+                    <td>@emp.Employees.FirstName</td>
+                    <td>@emp.Employees.Lastname</td>
+                    <td>@emp.StartDay</td>
+                    <td>@emp.Day</td>
+                    <td>@emp.EndDay</td>
+                    <td>@emp.PermissionType</td>
+                    <td><a href="/Permissions/Index/@emp.EmployeeId" class="btn btn-default" style="border-block-color: darkcyan">Detaylar</a></td>
+                </tr>
+            }
+        </table>*@
+
+    @(Html
+            .Grid(Model)
+            .Build(columns =>
+            {
+                columns.Add(model => model.EmployeeId).Titled("id").Css("id");
+                columns.Add(model => model.Employees.EmployeeCode).Titled("Personel Kodu").Css("c");
+                columns.Add(model => model.Employees.FirstName).Titled("Personel Adı").Css("c");
+                columns.Add(model => model.Employees.Lastname).Titled("Soyadı");
+                columns.Add(model => model.StartDay).Titled("Başlangıç Tarihi").Formatted("{0:d}").Css("c");
+                columns.Add(model => model.Day).Titled("Gün");
+                columns.Add(model => model.EndDay).Titled("Bitiş Tarihi").Formatted("{0:d}").Css("c");
+                columns.Add(model => model.PermissionType).Titled("İzin Tipi").Css("c");
+
+                columns.Add(model => " <a  class= 'btn btn-danger'" + " href=/Permissions/PermissionDelete/" + model.EmployeeId + ">Sil</a>" ).Encoded(false);
+
+
+                columns.Add(model => " <a  class= 'btn btn-success'" + " href=/Permissions/PermissionGet/" + model.EmployeeId + ">Güncelle</a>").Encoded(false);
+
+               columns.Add(model => " <a style='border-color: dimgrey' class= 'btn btn-default'" + " href=/Permissions/Index/" + model.EmployeeId + ">Detaylar</a>").Encoded(false);
+
+
+                //columns.Add(model => model.Birthday).Titled("Birthday").Formatted("{0:d}");
+
+            })
+            .UsingFilterMode(GridFilterMode.Header)
+            .Empty("No data found")
+            .Filterable()
+            .Sortable()
+            .Pageable()
+            .Css("css-classes") // Overwrites all classes with the new ones
+            .AppendCss("table-hover")
+            )
+
+
+
+    <head>
+        <link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <script src="~/Scripts/MvcGrid/mvc-grid.js"></script>
+
+        <style>
+            .id {
+                max-width: 100px;
+            }
+
+            .b {
+                max-width: 150px;
+            }
+
+            .c {
+                max-width: 200px;
+            }
+
+            .table-hover tbody tr:hover {
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+
+            .mvc-grid td {
+                border: 1px solid #dee2e6;
+                padding: 0.05em;
+                width: 100%;
+                overflow: hidden;
+            }
+        </style>
+    </body>
+
+
+
+</form>
+
+

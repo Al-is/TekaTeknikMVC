@@ -1,0 +1,70 @@
+﻿@model List<Payments>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form class="form-group" method="post">
+    <h1>Ödeme Detay</h1>
+
+    <br />
+    <b> @ViewBag.empName</b>
+    <br />
+    <hr />
+    <a href="/Payment/PaymentAdd/@Model[0].EmployeeId" class="btn btn-info">Ödeme Ekle</a>
+    <br />
+    @*<div class="row">
+       <div class="col col-md-5">
+            <h4>Toplam Ödemeler</h4>
+            Bu ay yapılan toplam ödeme  <span class="pull-right strong"></span>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:100%">@ViewBag.totalPaymentByMonth</div>
+            </div>
+
+            Bu yıl yapılan toplam ödeme  <span class="pull-right strong"></span>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width:100%">@ViewBag.totalPaymentByYear</div>
+            </div>
+
+            12.593 Downloads<span class="pull-right strong">+ 25%</span>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">25%</div>
+            </div>
+        </div>
+    </div>*@
+
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>Ödeme Tarihi</th>
+            <th>Ödeme Türü</th>
+            <th>Ödeme Yılı</th>
+            <th>Ödeme Ayı</th>
+            <th>Ödemeler </th>
+            <th> Sil</th>
+            <th> Güncelle</th>
+
+
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Date</td>
+                <td>@x.PaymentType</td>
+                <td>@x.Year</td>
+                <td>@x.Month</td>
+                <td>@x.Amount</td>
+                <td><a href="/Payment/PaymentDelete/@x.PaymentId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Payment/PaymentGet/@x.PaymentId" class="btn btn-success">Güncelle</a></td>
+            </tr>
+
+        }
+
+
+
+    </table>
+</form>

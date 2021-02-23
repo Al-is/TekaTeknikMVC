@@ -1,0 +1,43 @@
+﻿@model List<Contacts>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <h1>İrtibat Detay</h1>
+    <br />
+    <b> @ViewBag.empName</b>
+    <br />
+    <a href="/Contact/ContactAdd/@Model[0].EmployeeId" class="btn btn-info">İrtibat Ekle</a>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>İrtibat Adı</th>
+            <th>İrtibat Soyadı</th>
+            <th>İrtibat Telefon</th>
+            <th>İrtibat Yakınlık</th>
+            <th> Sil</th>
+            <th> Güncelle</th>
+
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td> @x.FirstName </td>
+                <td>@x.LastName</td>
+                <td>@x.Phone</td>
+                <td>@x.Relation</td>
+                <td><a href="/Contact/ContactDelete/@x.ContactId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Contact/ContactGet/@x.ContactId" class="btn btn-success">Güncelle</a></td>
+            </tr>
+
+        }
+
+
+
+    </table>
+</form>

@@ -1,0 +1,129 @@
+﻿
+@model List<Employees>
+
+<h3>Personeller</h3>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<table class="table table-bordered">
+        <tr>
+            <th>Çalışan id</th>
+            <th>Personel Kodu</th>
+            <th>Çalışan Adı</th>
+            <th>Çalışan Soyadı</th>
+            <th>Departman</th>
+            <th>Görev</th>
+            <th>Cep Telefonu</th>
+            <th>Mail</th>
+
+        </tr>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.EmployeeId</td>
+                <td>@emp.EmployeeCode</td>
+                <td>@emp.FirstName</td>
+                <td>@emp.Lastname</td>
+                <td>@emp.Departments.DepartmentName</td>
+                <td>@emp.Tasks.TaskName</td>
+                <td>@emp.MobilePhone</td>
+                <td>@emp.Mail</td>
+
+                <td><a href="/Employees/EmployeeDelete/@emp.EmployeeId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Employees/EmployeeGet/@emp.EmployeeId" class="btn btn-success">Güncelle</a></td>
+                <td><a href="/Contact/Index/@emp.EmployeeId" class="btn btn-info">İrtibat Ekle</a></td>
+                <td><a href="/Permissions/Index/@emp.EmployeeId" class="btn btn-primary">İzin Ekle</a></td>
+                <td><a href="/Payment/Index/@emp.EmployeeId" class="btn btn-default" style="border-block-color: darkcyan">Ödeme Ekle</a></td>
+                <td><a href="/Payment/Index/@emp.EmployeeId" class="btn btn-default" style="border-color: dimgrey">Ödeme Ekle</a></td>
+                <td><a href="/Employees/EmployeeDetail/@emp.EmployeeId" class="btn btn-default">Detaylar</a></td>
+                <td></td>
+
+            </tr>
+        }
+    </table>*@
+
+<br />
+<a href="/Employees/NewEmployeeAdd/" class="btn btn-primary">Yeni Personel Ekle</a>
+<br />
+<br />
+
+
+@(Html
+            .Grid(Model)
+            .Build(columns =>
+            {
+                columns.Add(model => model.EmployeeId).Titled("id").Css("id");
+                columns.Add(model => model.EmployeeCode).Titled("Personel Kodu").Css("c");
+                columns.Add(model => model.FirstName).Titled("Personel Adı").Css("c");
+                columns.Add(model => model.Lastname).Titled("Soyadı");
+                columns.Add(model => model.Departments.DepartmentName).Titled("Departman");
+                columns.Add(model => model.Tasks.TaskName).Titled("Görevi");
+                columns.Add(model => model.StartDay).Titled("Giriş Tarihi").Formatted("{0:d}").Css("c");
+                columns.Add(model => model.EndDay).Titled("Çıkış Tarihi").Formatted("{0:d}").Css("c");
+                columns.Add(model => model.MobilePhone).Titled("Telefon").Css("b");
+                //columns.Add(model => model.Mail).Titled("Mail");
+
+                columns.Add(model => " <a  class= 'btn btn-danger'" + " href=/Employees/EmployeeDelete/" + model.EmployeeId + ">S</a>" ).Encoded(false);
+
+
+                columns.Add(model => " <a  class= 'btn btn-success'" + " href=/Employees/EmployeeGet/" + model.EmployeeId + ">G</a>").Encoded(false);
+
+                columns.Add(model => " <a  class= 'btn btn-info'" + " href=/Contact/Index/" + model.EmployeeId + ">İrtibat Ekle</a>").Encoded(false);
+
+                columns.Add(model => " <a  class= 'btn btn-primary'" + " href=/Permissions/Index/" + model.EmployeeId + ">İzin Ekle</a>").Encoded(false);
+
+                columns.Add(model => " <a style='border-block-color: darkcyan' class= 'btn btn-default'" + " href=/Payment/Index/" + model.EmployeeId + ">Ödeme Ekle</a>").Encoded(false);
+
+                columns.Add(model => " <a style='border-color: dimgrey' class= 'btn btn-default'" + " href=/Employees/EmployeeDetail/" + model.EmployeeId + ">Detaylar</a>").Encoded(false);
+
+
+                //columns.Add(model => model.Birthday).Titled("Birthday").Formatted("{0:d}");
+
+            })
+            .UsingFilterMode(GridFilterMode.Header)
+            .Empty("No data found")
+            .Filterable()
+            .Sortable()
+            .Pageable()
+            .Css("css-classes") // Overwrites all classes with the new ones
+            .AppendCss("table-hover")
+            )
+
+
+
+<head>
+    <link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet">
+    
+</head>
+<body>
+<script src="~/Scripts/MvcGrid/mvc-grid.js"></script>
+
+    <style>
+        .id {
+            max-width: 110px;
+        }
+
+        .b {
+            max-width: 150px;
+        }
+
+        .c {
+            max-width: 200px;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        .mvc-grid td {
+            border: 1px solid #dee2e6;
+            padding: 0.05em;
+            width: 100%;
+            overflow: hidden;
+        }
+    </style>
+</body>
+
